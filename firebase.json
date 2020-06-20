@@ -1,0 +1,7 @@
+{
+  "hosting": {
+    "predeploy": "npm run docs",
+    "target": "geofirestore-core",
+    "public": "docs"
+  }
+}
