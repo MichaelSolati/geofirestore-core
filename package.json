@@ -46,13 +46,15 @@
     "package.json",
     "README.md"
   ],
+  "dependencies": {
+    "geokit": "^0.1.5"
+  },
   "optionalDependencies": {
     "@google-cloud/firestore": ">= 2.0.0",
     "@types/node": ">= 8.0.0",
     "firebase": ">= 6.0.0"
   },
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^13.0.0",
     "@rollup/plugin-node-resolve": "^8.0.1",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
