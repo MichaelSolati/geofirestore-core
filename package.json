@@ -47,7 +47,7 @@
     "README.md"
   ],
   "dependencies": {
-    "geokit": "^0.1.5"
+    "geokit": "^1.0.1"
   },
   "optionalDependencies": {
     "@google-cloud/firestore": ">= 2.0.0",
