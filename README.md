@@ -8,6 +8,8 @@
 
 Full documentation is available at [https://core.geofirestore.com](https://core.geofirestore.com).
 
+Lightweight location-based querying and encoding of Firebase Firestore Documents for geofirestore.
+
 ## Contributing
 
 All code should pass tests, as well as be well documented. Please open PRs into the `dev` branch. [Please also see the Commit Message Guidelines](CONTRIBUTING.md) for how commit messages should be structured.
