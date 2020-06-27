@@ -223,11 +223,13 @@ export function encodeGeoDocument(
     lat: geopoint.latitude,
     lng: geopoint.longitude,
   });
-  (documentData as GeoFirestoreTypes.GeoDocumentData).g = {
-    geopoint,
-    geohash,
+  return {
+    ...documentData,
+    g: {
+      geopoint,
+      geohash,
+    },
   };
-  return documentData as GeoFirestoreTypes.GeoDocumentData;
 }
 
 /**
