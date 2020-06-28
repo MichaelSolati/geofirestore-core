@@ -41,10 +41,7 @@ export function encodeDocumentSet(
     customKey,
     options && (options.merge || !!options.mergeFields)
   );
-  if (geopoint) {
-    return encodeGeoDocument(geopoint, documentData);
-  }
-  return documentData;
+  return geopoint ? encodeGeoDocument(geopoint, documentData) : documentData;
 }
 
 /**
@@ -62,10 +59,7 @@ export function encodeDocumentUpdate(
     throw new Error('document must be an object');
   }
   const geopoint = findGeoPoint(documentData, customKey, true);
-  if (geopoint) {
-    documentData = encodeGeoDocument(geopoint, documentData);
-  }
-  return documentData;
+  return geopoint ? encodeGeoDocument(geopoint, documentData) : documentData;
 }
 
 /**
