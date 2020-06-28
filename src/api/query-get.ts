@@ -1,10 +1,7 @@
 import {GeoQuerySnapshot} from './snapshot';
+import {validateQueryCriteria} from './validate';
 import {GeoFirestoreTypes} from '../definitions';
-import {
-  calculateDistance,
-  generateQuery,
-  validateQueryCriteria,
-} from '../utils';
+import {calculateDistance, generateQuery} from '../utils';
 
 /**
  * Executes a query and returns the result(s) as a GeoQuerySnapshot.

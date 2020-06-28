@@ -1,11 +1,7 @@
-import {GeoFirestoreTypes} from '../definitions';
 import {GeoQuerySnapshot} from './snapshot';
-import {
-  calculateDistance,
-  generateQuery,
-  validateQueryCriteria,
-  validateGeoDocument,
-} from '../utils';
+import {validateGeoDocument, validateQueryCriteria} from './validate';
+import {GeoFirestoreTypes} from '../definitions';
+import {calculateDistance, generateQuery} from '../utils';
 
 interface DocMap {
   change: GeoFirestoreTypes.web.DocumentChange;

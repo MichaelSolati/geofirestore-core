@@ -1,5 +1,6 @@
+import {validateLocation} from './validate';
 import {GeoFirestoreTypes} from '../definitions';
-import {generateGeoQueryDocumentSnapshot, validateLocation} from '../utils';
+import {generateGeoQueryDocumentSnapshot} from '../utils';
 
 /**
  * A `GeoQuerySnapshot` contains zero or more `QueryDocumentSnapshot` objects
