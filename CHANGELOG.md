@@ -1,3 +1,18 @@
+### 4.1.0 (2020-07-02)
+
+##### Bug Fixes
+
+* **encodeGeoDocument:**  clone object instead of mutating original, fixes [#1](https://github.com/MichaelSolati/geofirestore-core/pull/1) ([b6f64e7d](https://github.com/MichaelSolati/geofirestore-core/commit/b6f64e7df172a92a1d9e85f391fa5d3e55348a2f))
+
+##### Refactors
+
+*  move all exported functions to `/api` ([246cc642](https://github.com/MichaelSolati/geofirestore-core/commit/246cc64223965dc48c06a77275130ff1cc1080e1))
+
+##### Tests
+
+*  add tests for `api/validate.ts` ([8a9f6dbc](https://github.com/MichaelSolati/geofirestore-core/commit/8a9f6dbc990b5ae2b284282a827e64cab5653436))
+*  add tests for `api/encode.ts` ([11e5667d](https://github.com/MichaelSolati/geofirestore-core/commit/11e5667d4d4e14a37a6157191b39ef7b0c8448e8))
+
 ## 4.0.0 (2020-06-22)
 
 ##### Build System / Dependencies
