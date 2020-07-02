@@ -24,6 +24,60 @@ export const invalidDocumentData: () => any[] = () => [
   'a',
   ['hi', 1],
 ];
+export const invalidLocations: () => any[] = () => [
+  {latitude: -91, longitude: 0},
+  {latitude: 91, longitude: 0},
+  {latitude: 0, longitude: 181},
+  {latitude: 0, longitude: -181},
+  {latitude: [0, 0], longitude: 0},
+  {latitude: 'a', longitude: 0},
+  {latitude: 0, longitude: 'a'},
+  {latitude: 'a', longitude: 'a'},
+  {latitude: NaN, longitude: 0},
+  {latitude: 0, longitude: NaN},
+  {latitude: undefined, longitude: NaN},
+  {latitude: null, longitude: 0},
+  {latitude: null, longitude: null},
+  {latitude: 0, longitude: undefined},
+  {latitude: undefined, longitude: undefined},
+  '',
+  'a',
+  true,
+  false,
+  [],
+  [1],
+  {},
+  {a: 1},
+  null,
+  undefined,
+  NaN,
+];
+export const invalidQueryCriterias: () => any[] = () => [
+  {},
+  {random: 100},
+  {center: {latitude: 91, longitude: 2}, radius: 1000, random: 'a'},
+  {center: {latitude: 91, longitude: 2}, radius: 1000},
+  {center: {latitude: 1, longitude: -181}, radius: 1000},
+  {center: {latitude: 'a', longitude: 2}, radius: 1000},
+  {center: {latitude: 1, longitude: [1, 2]}, radius: 1000},
+  {center: new firebase.firestore.GeoPoint(0, 0), radius: -1},
+  {center: {latitude: null, longitude: 2}, radius: 1000},
+  {center: {latitude: 1, longitude: undefined}, radius: 1000},
+  {center: {latitude: NaN, longitude: 0}, radius: 1000},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: -10},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: 'text'},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: [1, 2]},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: null},
+  true,
+  false,
+  undefined,
+  NaN,
+  [],
+  'a',
+  1,
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2, query: false},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2, query: 23},
+];
 // Define dummy data for database
 export const validDocumentData: () => GeoFirestoreTypes.DocumentData[] = () => [
   {coordinates: new firebase.firestore.GeoPoint(2, 3), count: 0},
@@ -35,7 +89,25 @@ export const validDocumentData: () => GeoFirestoreTypes.DocumentData[] = () => [
 ];
 export const validGeoDocumentData: () => GeoFirestoreTypes.GeoDocumentData[] = () =>
   validDocumentData().map(e => encodeDocumentAdd(e));
-
+export const validLocations: () => firebase.firestore.GeoPoint[] = () => [
+  new firebase.firestore.GeoPoint(0, 0),
+  new firebase.firestore.GeoPoint(-90, 180),
+  new firebase.firestore.GeoPoint(90, -180),
+  new firebase.firestore.GeoPoint(23, 74),
+  new firebase.firestore.GeoPoint(47.235124363, 127.2379654226),
+];
+export const validQueryCriterias: () => GeoFirestoreTypes.QueryCriteria[] = () => [
+  {center: new firebase.firestore.GeoPoint(0, 0), radius: 1000},
+  {center: new firebase.firestore.GeoPoint(1, -180), radius: 1.78},
+  {center: new firebase.firestore.GeoPoint(22.22, -107.77), radius: 0},
+  {center: new firebase.firestore.GeoPoint(0, 0)},
+  {center: new firebase.firestore.GeoPoint(1, -180)},
+  {center: new firebase.firestore.GeoPoint(22.22, -107.77)},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2},
+  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2, limit: 1},
+  {radius: 2, limit: 1},
+  {center: new firebase.firestore.GeoPoint(1, 2), limit: 1},
+];
 // Initialize Firebase
 firebase.initializeApp({
   apiKey: 'AIzaSyDFnedGL4qr_jenIpWYpbvot8s7Vuay_88',

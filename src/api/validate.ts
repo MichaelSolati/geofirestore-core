@@ -2,6 +2,60 @@ import {validateHash} from 'geokit';
 import {GeoFirestoreTypes} from '../definitions';
 
 /**
+ * Validates the inputted GeoDocument object and throws an error, or returns boolean, if it is invalid.
+ *
+ * @param documentData The GeoDocument object to be validated.
+ * @param flag Tells function to send up boolean if valid instead of throwing an error.
+ * @return Flag if data is valid
+ */
+export function validateGeoDocument(
+  documentData: GeoFirestoreTypes.GeoDocumentData,
+  flag = false
+): boolean {
+  let error: string;
+
+  if (Object.prototype.toString.call(documentData) !== '[object Object]') {
+    error = 'no document found';
+  } else if ('g' in documentData) {
+    error = !validateHash(documentData.g.geohash, true)
+      ? 'invalid geohash on object'
+      : error;
+    error = !validateLocation(documentData.g.geopoint, true)
+      ? 'invalid location on object'
+      : error;
+  } else {
+    error = 'no `g` field found in object';
+  }
+
+  if (typeof error !== 'undefined' && !flag) {
+    throw new Error('Invalid GeoFirestore object: ' + error);
+  } else {
+    return !error;
+  }
+}
+
+/**
+ * Validates the inputted limit and throws an error, or returns boolean, if it is invalid.
+ *
+ * @param limit The limit to be applied by `GeoQuery.limit()`
+ * @param flag Tells function to send up boolean if valid instead of throwing an error.
+ */
+export function validateLimit(limit: number, flag = false): boolean {
+  let error: string;
+  if (typeof limit !== 'number' || isNaN(limit)) {
+    error = 'limit must be a number';
+  } else if (limit < 0) {
+    error = 'limit must be greater than or equal to 0';
+  }
+
+  if (typeof error !== 'undefined' && !flag) {
+    throw new Error(error);
+  } else {
+    return !error;
+  }
+}
+
+/**
  * Validates a GeoPoint object and returns a boolean if valid, or throws an error if invalid.
  *
  * @param location The Firestore GeoPoint to be verified.
@@ -36,60 +90,6 @@ export function validateLocation(
 
   if (typeof error !== 'undefined' && !flag) {
     throw new Error('Invalid location: ' + error);
-  } else {
-    return !error;
-  }
-}
-
-/**
- * Validates the inputted limit and throws an error, or returns boolean, if it is invalid.
- *
- * @param limit The limit to be applied by `GeoQuery.limit()`
- * @param flag Tells function to send up boolean if valid instead of throwing an error.
- */
-export function validateLimit(limit: number, flag = false): boolean {
-  let error: string;
-  if (typeof limit !== 'number' || isNaN(limit)) {
-    error = 'limit must be a number';
-  } else if (limit < 0) {
-    error = 'limit must be greater than or equal to 0';
-  }
-
-  if (typeof error !== 'undefined' && !flag) {
-    throw new Error(error);
-  } else {
-    return !error;
-  }
-}
-
-/**
- * Validates the inputted GeoDocument object and throws an error, or returns boolean, if it is invalid.
- *
- * @param documentData The GeoDocument object to be validated.
- * @param flag Tells function to send up boolean if valid instead of throwing an error.
- * @return Flag if data is valid
- */
-export function validateGeoDocument(
-  documentData: GeoFirestoreTypes.GeoDocumentData,
-  flag = false
-): boolean {
-  let error: string;
-
-  if (!documentData) {
-    error = 'no document found';
-  } else if ('g' in documentData) {
-    error = !validateHash(documentData.g.geohash, true)
-      ? 'invalid geohash on object'
-      : null;
-    error = !validateLocation(documentData.g.geopoint, true)
-      ? 'invalid location on object'
-      : error;
-  } else {
-    error = 'no `g` field found in object';
-  }
-
-  if (error && !flag) {
-    throw new Error('Invalid GeoFirestore object: ' + error);
   } else {
     return !error;
   }
