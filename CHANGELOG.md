@@ -1,3 +1,9 @@
+#### 4.1.2 (2020-08-01)
+
+##### Bug Fixes
+
+*  include comments in `dist/**/*.d.ts` files ([eea05c55](https://github.com/MichaelSolati/geofirestore-core/commit/eea05c552dd2abb343df8de35c07c936500edce8))
+
 #### 4.1.1 (2020-08-01)
 
 ##### Chores
