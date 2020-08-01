@@ -1,3 +1,15 @@
+#### 4.1.1 (2020-08-01)
+
+##### Chores
+
+*  update dependencies ([00281184](https://github.com/MichaelSolati/geofirestore-core/commit/0028118478698606ac5b7afbd68ab92ef07c0c89))
+*  lint and test on deploy ([487fe572](https://github.com/MichaelSolati/geofirestore-core/commit/487fe572542045f7ee89320ab9fecb051aa3bbc6))
+*  run `Lint and Test` only on pull requests and pushes ([ee910ec7](https://github.com/MichaelSolati/geofirestore-core/commit/ee910ec7dc223325874a9755d8e01152d595977f))
+
+##### Documentation Changes
+
+* **definitions:**  add docs to all interfaces and types ([85205395](https://github.com/MichaelSolati/geofirestore-core/commit/85205395e5e6ea3a5a83d9285f048126e4d8ee47))
+
 ### 4.1.0 (2020-07-02)
 
 ##### Bug Fixes
