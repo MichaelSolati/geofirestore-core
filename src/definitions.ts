@@ -1,6 +1,6 @@
 /* tslint:disable:no-import-side-effect no-namespace no-shadowed-variable */
 import * as cloudfirestore from '@google-cloud/firestore';
-import {firestore as webfirestore} from 'firebase/app';
+import firebase from 'firebase/app';
 import '@types/node';
 
 export namespace GeoFirestoreTypes {
@@ -131,7 +131,7 @@ export namespace GeoFirestoreTypes {
    * (e.g. the desired behavior for server timestamps that have not yet been set
    * to their final value).
    */
-  export type SnapshotOptions = webfirestore.SnapshotOptions;
+  export type SnapshotOptions = firebase.firestore.SnapshotOptions;
   /**
    * Update data (for use with `DocumentReference.update()`) consists of field
    * paths (e.g. 'foo' or 'foo.baz') mapped to values. Fields that contain dots
@@ -159,19 +159,19 @@ export namespace GeoFirestoreTypes {
      * document references, and querying for documents (using the methods
      * inherited from `Query`).
      */
-    export type CollectionReference = webfirestore.CollectionReference;
+    export type CollectionReference = firebase.firestore.CollectionReference;
     /**
      * A `DocumentChange` represents a change to the documents matching a query.
      * It contains the document affected and the type of change that occurred.
      */
-    export type DocumentChange = webfirestore.DocumentChange;
+    export type DocumentChange = firebase.firestore.DocumentChange;
     /**
      * A `DocumentReference` refers to a document location in a Firestore database
      * and can be used to write, read, or listen to the location. The document at
      * the referenced location may or may not exist. A `DocumentReference` can
      * also be used to create a `CollectionReference` to a subcollection.
      */
-    export type DocumentReference = webfirestore.DocumentReference;
+    export type DocumentReference = firebase.firestore.DocumentReference;
     /**
      * A `DocumentSnapshot` contains data read from a document in your Firestore
      * database. The data can be extracted with `.data()` or `.get(<field>)` to
@@ -181,13 +181,13 @@ export namespace GeoFirestoreTypes {
      * access will return 'undefined'. You can use the `exists` property to
      * explicitly verify a document's existence.
      */
-    export type DocumentSnapshot = webfirestore.DocumentSnapshot;
+    export type DocumentSnapshot = firebase.firestore.DocumentSnapshot;
     /**
      * The Cloud Firestore service interface.
      *
      * Do not call this constructor directly. Instead, use `firebase.firestore()`.
      */
-    export type Firestore = webfirestore.Firestore;
+    export type Firestore = firebase.firestore.Firestore;
     /**
      * A FieldPath refers to a field in a document. The path may consist of a
      * single field name (referring to a top-level field in the document), or a
@@ -197,7 +197,7 @@ export namespace GeoFirestoreTypes {
      * name is provided, the path will point to a nested field in a document.
      *
      */
-    export type FieldPath = webfirestore.FieldPath;
+    export type FieldPath = firebase.firestore.FieldPath;
     /**
      * An options object that configures the behavior of `get()` calls on
      * `DocumentReference` and `Query`. By providing a `GetOptions` object, these
@@ -205,7 +205,7 @@ export namespace GeoFirestoreTypes {
      * the local cache or attempt to fetch results from the server and fall back to
      * the cache (which is the default).
      */
-    export type GetOptions = webfirestore.GetOptions;
+    export type GetOptions = firebase.firestore.GetOptions;
     /**
      * An immutable object representing a geo point in Firestore. The geo point
      * is represented as latitude/longitude pair.
@@ -213,12 +213,12 @@ export namespace GeoFirestoreTypes {
      * Latitude values are in the range of [-90, 90].
      * Longitude values are in the range of [-180, 180].
      */
-    export type GeoPoint = webfirestore.GeoPoint;
+    export type GeoPoint = firebase.firestore.GeoPoint;
     /**
      * A `Query` refers to a Query which you can read or listen to. You can also
      * construct refined `Query` objects by adding filters and ordering.
      */
-    export type Query = webfirestore.Query;
+    export type Query = firebase.firestore.Query;
     /**
      * A `QueryDocumentSnapshot` contains data read from a document in your
      * Firestore database as part of a query. The document is guaranteed to exist
@@ -230,7 +230,7 @@ export namespace GeoFirestoreTypes {
      * `exists` property will always be true and `data()` will never return
      * 'undefined'.
      */
-    export type QueryDocumentSnapshot = webfirestore.QueryDocumentSnapshot;
+    export type QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
     /**
      * A `QuerySnapshot` contains zero or more `DocumentSnapshot` objects
      * representing the results of a query. The documents can be accessed as an
@@ -238,18 +238,18 @@ export namespace GeoFirestoreTypes {
      * number of documents can be determined via the `empty` and `size`
      * properties.
      */
-    export type QuerySnapshot = webfirestore.QuerySnapshot;
+    export type QuerySnapshot = firebase.firestore.QuerySnapshot;
     /**
      * Defines configuration options for the Remote Config SDK.
      */
-    export type Settings = webfirestore.Settings;
+    export type Settings = firebase.firestore.Settings;
     /**
      * A reference to a transaction.
      * The `Transaction` object passed to a transaction's updateFunction provides
      * the methods to read and write data within the transaction context. See
      * `Firestore.runTransaction()`.
      */
-    export type Transaction = webfirestore.Transaction;
+    export type Transaction = firebase.firestore.Transaction;
     /**
      * A write batch, used to perform multiple writes as a single atomic unit.
      *
@@ -261,7 +261,7 @@ export namespace GeoFirestoreTypes {
      * Unlike transactions, write batches are persisted offline and therefore are
      * preferable when you don't need to condition your writes on read data.
      */
-    export type WriteBatch = webfirestore.WriteBatch;
+    export type WriteBatch = firebase.firestore.WriteBatch;
   }
   export namespace cloud {
     /**
