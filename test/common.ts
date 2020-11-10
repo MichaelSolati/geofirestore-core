@@ -108,6 +108,11 @@ export const validQueryCriterias: () => GeoFirestoreTypes.QueryCriteria[] = () =
   {radius: 2, limit: 1},
   {center: new firebase.firestore.GeoPoint(1, 2), limit: 1},
 ];
+export const validSetOptions: () => GeoFirestoreTypes.SetOptions = () => ({
+  merge: true,
+  customKey: 'foobar',
+  mergeFields: ['a', 'b'],
+});
 // Initialize Firebase
 firebase.initializeApp({
   apiKey: 'AIzaSyDFnedGL4qr_jenIpWYpbvot8s7Vuay_88',
