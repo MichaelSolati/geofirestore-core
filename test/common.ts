@@ -169,6 +169,23 @@ function deleteCollection(): Promise<any> {
   );
 }
 
+export function stubCollection(
+  docs: {[key: string]: any}[] = validDocumentData()
+): Promise<any> {
+  const batch = firestore.batch();
+  docs.forEach(item => {
+    const key = Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, '')
+      .substr(0, 8);
+
+    item.key = item.key || key;
+    const insert = collection.doc(item.key);
+    batch.set(insert, encodeDocumentAdd(item));
+  });
+  return batch.commit();
+}
+
 /* Returns a promise which is fulfilled after the inputted number of milliseconds pass */
 export function wait(milliseconds = 100): Promise<void> {
   return new Promise(resolve => {
