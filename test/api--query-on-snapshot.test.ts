@@ -1,5 +1,4 @@
 import * as chai from 'chai';
-import * as firebase from 'firebase/app';
 import {encodeDocumentAdd} from '../src/api/encode';
 
 import {GeoQueryOnSnapshot} from '../src/api/query-on-snapshot';
