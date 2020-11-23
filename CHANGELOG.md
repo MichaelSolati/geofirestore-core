@@ -1,3 +1,9 @@
+### 4.3.0 (2020-11-23)
+
+##### Chores
+
+*  remove `@types/node` ([bd539374](https://github.com/MichaelSolati/geofirestore-core/commit/bd539374c6ced4cb84a94212f8ea9365e04d3526))
+
 ### 4.2.0 (2020-11-23)
 
 ##### Build System / Dependencies
