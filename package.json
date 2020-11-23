@@ -1,7 +1,7 @@
 {
   "name": "geofirestore-core",
   "description": "Lightweight location-based querying and encoding of Firebase Firestore Documents for geofirestore.",
-  "version": "4.1.2",
+  "version": "4.2.0",
   "scripts": {
     "build": "rimraf ./dist && rollup -c",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
