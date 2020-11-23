@@ -1,3 +1,27 @@
+### 4.2.0 (2020-11-23)
+
+##### Build System / Dependencies
+
+*  update GitHub actions ([7bf52ac8](https://github.com/MichaelSolati/geofirestore-core/commit/7bf52ac8c1ad9632eaaf27006b320a6704b8d1f5))
+
+##### Chores
+
+*  update and lock dependencies ([745c55cc](https://github.com/MichaelSolati/geofirestore-core/commit/745c55cc28546a6cb931301824ffe7ac63ba9897))
+
+##### New Features
+
+* **firebase:**  add support for firebase 8, fixes [#3](https://github.com/MichaelSolati/geofirestore-core/pull/3), fixes MichaelSolati/geofirestore-js[#198](https://github.com/MichaelSolati/geofirestore-core/pull/198) ([8c238407](https://github.com/MichaelSolati/geofirestore-core/commit/8c2384078ab4892d55f7b8380c330e35f72cfb3e))
+
+##### Bug Fixes
+
+*  re-add `@types/node` ([3c095036](https://github.com/MichaelSolati/geofirestore-core/commit/3c095036c69c6b8f613ad4f177874a92e4240e62))
+
+##### Tests
+
+* **firebase:**  update firebase import in tests ([be5e026b](https://github.com/MichaelSolati/geofirestore-core/commit/be5e026b2b6388ef4a9536e8518de00f42f03cb1))
+* **GeoQueryOnSnapshot:**  add tests for `api/query-on-snapshot.ts` ([deedd8f5](https://github.com/MichaelSolati/geofirestore-core/commit/deedd8f58adf5a8e51d576a6d5c967e99aadbbd9))
+* **utils:**  add tests for util functions ([0adee9a5](https://github.com/MichaelSolati/geofirestore-core/commit/0adee9a5822d3164164c077c5aaada74d92576d7))
+
 #### 4.1.2 (2020-08-01)
 
 ##### Bug Fixes
