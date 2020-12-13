@@ -1,3 +1,9 @@
+### 4.4.0 (2020-12-13)
+
+##### Refactors
+
+* **GeoFirestoreTypes:**  set WhereFilterOp from Firestore definition ([df1cd631](https://github.com/MichaelSolati/geofirestore-core/commit/df1cd631733ab1d1ab87e670298d0cd8e0498f6f))
+
 ### 4.3.0 (2020-11-23)
 
 ##### Chores
