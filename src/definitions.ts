@@ -141,17 +141,12 @@ export namespace GeoFirestoreTypes {
   }
   /**
    * Filter conditions in a `Query.where()` clause are specified using the
-   * strings '<', '<=', '==', '>=', '>', 'array-contains', 'in', and 'array-contains-any'.
+   * strings '<', '<=', '==', '!=', '>=', '>', 'array-contains', 'in',
+   * 'array-contains-any', and 'not-in'.
    */
   export type WhereFilterOp =
-    | '<'
-    | '<='
-    | '=='
-    | '>='
-    | '>'
-    | 'array-contains'
-    | 'in'
-    | 'array-contains-any';
+    | firebase.firestore.WhereFilterOp
+    | cloudfirestore.WhereFilterOp;
   export namespace web {
     /**
      * A `CollectionReference` object can be used for adding documents, getting
