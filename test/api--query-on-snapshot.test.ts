@@ -77,7 +77,7 @@ describe('GeoQueryOnSnapshot Tests:', () => {
                   );
                   timer = setTimeout(() => {
                     expect(count).to.equal(1);
-                    resolve();
+                    resolve(null);
                   }, 5000);
                 }
                 count++;

@@ -142,7 +142,7 @@ function deleteCollection(): Promise<any> {
   /* Actually purges Firestore collection recursively through batch function. */
   function deleteQueryBatch(
     query: firebase.firestore.Query,
-    resolve: () => void,
+    resolve: (value: any) => void,
     reject: (err: Error) => void
   ): void {
     query
@@ -156,7 +156,7 @@ function deleteCollection(): Promise<any> {
       })
       .then(numDeleted => {
         if (numDeleted === 0) {
-          resolve();
+          resolve(null);
         } else {
           process.nextTick(() => deleteQueryBatch(query, resolve, reject));
         }
