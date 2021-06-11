@@ -126,7 +126,11 @@ firebase.initializeApp({
 /**********************/
 /* Helper functions which runs before each Jasmine test has started */
 export function beforeEachHelper(done: any): void {
+  if (firestore) {
+    firestore.terminate();
+  }
   firestore = firebase.firestore();
+  firestore.useEmulator('localhost', 8080);
   collection = firestore.collection(testCollectionName);
   done();
 }
