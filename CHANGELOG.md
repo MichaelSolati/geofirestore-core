@@ -1,3 +1,21 @@
+#### 4.4.1 (2021-06-11)
+
+##### Build System / Dependencies
+
+*  update release script ([fb75cd46](https://github.com/MichaelSolati/geofirestore-core/commit/fb75cd46a69169e73fd88eca31ebf3a154b2e223))
+
+##### Chores
+
+*  update dependencies ([bc0ab59d](https://github.com/MichaelSolati/geofirestore-core/commit/bc0ab59d076deee073525b81eb76a857b04ccdc9))
+
+##### Code Style Changes
+
+*  fix up code to pass linting test ([c0fbe334](https://github.com/MichaelSolati/geofirestore-core/commit/c0fbe3345c028d70da1039321a764fff4a73012a))
+
+##### Tests
+
+* **firebase:**  use emulator to run tests ([5e3d9f94](https://github.com/MichaelSolati/geofirestore-core/commit/5e3d9f94ea85a412d50597470a68d981ee41821c))
+
 ### 4.4.0 (2020-12-13)
 
 ##### Refactors
