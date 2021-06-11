@@ -1,3 +1,9 @@
+#### 4.4.3 (2021-06-11)
+
+##### Bug Fixes
+
+* **release:**  set target for firebase deploy ([8eac6604](https://github.com/MichaelSolati/geofirestore-core/commit/8eac66044af95d053fddf52a291e934dad514781))
+
 #### 4.4.2 (2021-06-11)
 
 ##### Bug Fixes
