@@ -1,3 +1,9 @@
+#### 4.4.4 (2021-06-11)
+
+##### Bug Fixes
+
+* **release:**  reorder deploys ([72f3c9f5](https://github.com/MichaelSolati/geofirestore-core/commit/72f3c9f57da2487a50b155e006f8f92356d207a1))
+
 #### 4.4.3 (2021-06-11)
 
 ##### Bug Fixes
