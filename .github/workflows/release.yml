@@ -33,11 +33,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: NPM Publish
-        uses: JS-DevTools/npm-publish@v1
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
-
       - name: Firebase Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -46,3 +41,8 @@ jobs:
           projectId: geofirestore
           channelId: live
           target: geofirestore-core
+
+      - name: NPM Publish
+        uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{ secrets.NPM_TOKEN }}
