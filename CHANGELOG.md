@@ -1,3 +1,9 @@
+#### 4.4.2 (2021-06-11)
+
+##### Bug Fixes
+
+* **release:**  set `channelId` to `live` ([820605c7](https://github.com/MichaelSolati/geofirestore-core/commit/820605c736e93e730ce6e2c7a6152c0b92fa003c))
+
 #### 4.4.1 (2021-06-11)
 
 ##### Build System / Dependencies
