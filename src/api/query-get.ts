@@ -45,10 +45,8 @@ export function geoQueryGet(
  * A `GeoJoinerGet` aggregates multiple `get` results.
  */
 export class GeoQueryGet {
-  private _docs: Map<
-    string,
-    GeoFirestoreTypes.web.QueryDocumentSnapshot
-  > = new Map();
+  private _docs: Map<string, GeoFirestoreTypes.web.QueryDocumentSnapshot> =
+    new Map();
 
   /**
    * @param snapshots An array of snpashots from a Firestore Query `get` call.

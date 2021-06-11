@@ -224,7 +224,8 @@ export namespace GeoFirestoreTypes {
      * `exists` property will always be true and `data()` will never return
      * 'undefined'.
      */
-    export type QueryDocumentSnapshot = firebase.firestore.QueryDocumentSnapshot;
+    export type QueryDocumentSnapshot =
+      firebase.firestore.QueryDocumentSnapshot;
     /**
      * A `QuerySnapshot` contains zero or more `DocumentSnapshot` objects
      * representing the results of a query. The documents can be accessed as an

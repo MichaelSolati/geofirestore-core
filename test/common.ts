@@ -87,8 +87,8 @@ export const validDocumentData: () => GeoFirestoreTypes.DocumentData[] = () => [
   {coordinates: new firebase.firestore.GeoPoint(67, 55), count: 4},
   {coordinates: new firebase.firestore.GeoPoint(8, 8), count: 5},
 ];
-export const validGeoDocumentData: () => GeoFirestoreTypes.GeoDocumentData[] = () =>
-  validDocumentData().map(e => encodeDocumentAdd(e));
+export const validGeoDocumentData: () => GeoFirestoreTypes.GeoDocumentData[] =
+  () => validDocumentData().map(e => encodeDocumentAdd(e));
 export const validLocations: () => firebase.firestore.GeoPoint[] = () => [
   new firebase.firestore.GeoPoint(0, 0),
   new firebase.firestore.GeoPoint(-90, 180),
@@ -96,18 +96,19 @@ export const validLocations: () => firebase.firestore.GeoPoint[] = () => [
   new firebase.firestore.GeoPoint(23, 74),
   new firebase.firestore.GeoPoint(47.235124363, 127.2379654226),
 ];
-export const validQueryCriterias: () => GeoFirestoreTypes.QueryCriteria[] = () => [
-  {center: new firebase.firestore.GeoPoint(0, 0), radius: 1000},
-  {center: new firebase.firestore.GeoPoint(1, -180), radius: 1.78},
-  {center: new firebase.firestore.GeoPoint(22.22, -107.77), radius: 0},
-  {center: new firebase.firestore.GeoPoint(0, 0)},
-  {center: new firebase.firestore.GeoPoint(1, -180)},
-  {center: new firebase.firestore.GeoPoint(22.22, -107.77)},
-  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2},
-  {center: new firebase.firestore.GeoPoint(1, 2), radius: 2, limit: 1},
-  {radius: 2, limit: 1},
-  {center: new firebase.firestore.GeoPoint(1, 2), limit: 1},
-];
+export const validQueryCriterias: () => GeoFirestoreTypes.QueryCriteria[] =
+  () => [
+    {center: new firebase.firestore.GeoPoint(0, 0), radius: 1000},
+    {center: new firebase.firestore.GeoPoint(1, -180), radius: 1.78},
+    {center: new firebase.firestore.GeoPoint(22.22, -107.77), radius: 0},
+    {center: new firebase.firestore.GeoPoint(0, 0)},
+    {center: new firebase.firestore.GeoPoint(1, -180)},
+    {center: new firebase.firestore.GeoPoint(22.22, -107.77)},
+    {center: new firebase.firestore.GeoPoint(1, 2), radius: 2},
+    {center: new firebase.firestore.GeoPoint(1, 2), radius: 2, limit: 1},
+    {radius: 2, limit: 1},
+    {center: new firebase.firestore.GeoPoint(1, 2), limit: 1},
+  ];
 export const validSetOptions: () => GeoFirestoreTypes.SetOptions = () => ({
   merge: true,
   customKey: 'foobar',

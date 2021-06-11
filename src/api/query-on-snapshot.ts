@@ -207,7 +207,7 @@ export class GeoQueryOnSnapshot {
     index: number
   ): void {
     const docChanges = Array.isArray(snapshot.docChanges)
-      ? ((snapshot.docChanges as any) as GeoFirestoreTypes.web.DocumentChange[])
+      ? (snapshot.docChanges as any as GeoFirestoreTypes.web.DocumentChange[])
       : snapshot.docChanges();
     if (!this._firstRoundResolved) this._queriesResolved[index] = 1;
     if (docChanges.length) {

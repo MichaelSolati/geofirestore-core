@@ -29,9 +29,10 @@ export class GeoQuerySnapshot {
       validateLocation(_center);
     }
 
-    this._docs = (_querySnapshot as GeoFirestoreTypes.cloud.QuerySnapshot).docs.map(
-      (snapshot: GeoFirestoreTypes.cloud.QueryDocumentSnapshot) =>
-        generateGeoQueryDocumentSnapshot(snapshot, _center)
+    this._docs = (
+      _querySnapshot as GeoFirestoreTypes.cloud.QuerySnapshot
+    ).docs.map((snapshot: GeoFirestoreTypes.cloud.QueryDocumentSnapshot) =>
+      generateGeoQueryDocumentSnapshot(snapshot, _center)
     );
   }
 
@@ -66,8 +67,8 @@ export class GeoQuerySnapshot {
    */
   docChanges(): GeoFirestoreTypes.DocumentChange[] {
     const docChanges = Array.isArray(this._querySnapshot.docChanges)
-      ? ((this._querySnapshot
-          .docChanges as any) as GeoFirestoreTypes.web.DocumentChange[])
+      ? (this._querySnapshot
+          .docChanges as any as GeoFirestoreTypes.web.DocumentChange[])
       : this._querySnapshot.docChanges();
     return (docChanges as GeoFirestoreTypes.web.DocumentChange[]).map(
       (change: GeoFirestoreTypes.web.DocumentChange) => {
