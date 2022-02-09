@@ -1,6 +1,6 @@
 /* tslint:disable:no-import-side-effect no-namespace no-shadowed-variable */
 import * as cloudfirestore from '@google-cloud/firestore';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 
 export namespace GeoFirestoreTypes {
   /**

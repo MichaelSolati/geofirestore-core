@@ -1,5 +1,5 @@
 import * as chai from 'chai';
-import firebase from 'firebase/app';
+import firebase from 'firebase/compat/app';
 import {hash as geohash} from 'geokit';
 import 'firebase/firestore';
 
