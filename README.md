@@ -4,7 +4,6 @@
 [![npm bundle size](https://img.shields.io/bundlephobia/minzip/geofirestore-core)](https://bundlephobia.com/result?p=geofirestore-core)
 [![Lint and Test](https://github.com/MichaelSolati/geofirestore-core/workflows/Lint%20and%20Test/badge.svg?branch=dev)](https://github.com/MichaelSolati/geofirestore-core/actions?query=workflow%3A%22Lint+and+Test%22)
 [![Coveralls github](https://img.shields.io/coveralls/github/MichaelSolati/geofirestore-core)](https://coveralls.io/github/MichaelSolati/geofirestore-core)
-[![David](https://img.shields.io/david/michaelsolati/geofirestore-core)](https://david-dm.org/michaelsolati/geofirestore-core)
 [![GitHub stars](https://img.shields.io/github/stars/MichaelSolati/geofirestore-core)](https://github.com/MichaelSolati/geofirestore-core/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/MichaelSolati/geofirestore-core)](https://github.com/MichaelSolati/geofirestore-core/network/members)
 
