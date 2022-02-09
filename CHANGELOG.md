@@ -1,3 +1,9 @@
+## 5.0.0 (2022-02-09)
+
+##### New Features
+
+* **compat:**  update dependencies and use firebase v9 compat ([#4](https://github.com/MichaelSolati/geofirestore-core/pull/4)) ([8fbcb744](https://github.com/MichaelSolati/geofirestore-core/commit/8fbcb74448a57895bdbeacc908b58b804dc74b03))
+
 #### 4.4.4 (2021-06-11)
 
 ##### Bug Fixes
