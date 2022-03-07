@@ -14,13 +14,13 @@ import {calculateDistance, generateQuery} from '../utils';
  * @param queryCriteria The query criteria of geo based queries, includes field such as center, radius, and limit.
  */
 export function geoQueryGet(
-  query: GeoFirestoreTypes.cloud.Query | GeoFirestoreTypes.web.Query,
+  query: GeoFirestoreTypes.admin.Query | GeoFirestoreTypes.compat.Query,
   queryCriteria: GeoFirestoreTypes.QueryCriteria,
-  options: GeoFirestoreTypes.web.GetOptions = {source: 'default'}
+  options: GeoFirestoreTypes.compat.GetOptions = {source: 'default'}
 ): Promise<GeoQuerySnapshot> {
   const isWeb =
     Object.prototype.toString.call(
-      (query as GeoFirestoreTypes.web.CollectionReference).firestore
+      (query as GeoFirestoreTypes.compat.CollectionReference).firestore
         .enablePersistence
     ) === '[object Function]';
 
@@ -35,8 +35,8 @@ export function geoQueryGet(
   } else {
     query = queryCriteria.limit ? query.limit(queryCriteria.limit) : query;
     const promise = isWeb
-      ? (query as GeoFirestoreTypes.web.Query).get(options)
-      : (query as GeoFirestoreTypes.web.Query).get();
+      ? (query as GeoFirestoreTypes.compat.Query).get(options)
+      : (query as GeoFirestoreTypes.compat.Query).get();
 
     return promise.then(snapshot => new GeoQuerySnapshot(snapshot));
   }
@@ -45,7 +45,7 @@ export function geoQueryGet(
  * A `GeoJoinerGet` aggregates multiple `get` results.
  */
 export class GeoQueryGet {
-  private _docs: Map<string, GeoFirestoreTypes.web.QueryDocumentSnapshot> =
+  private _docs: Map<string, GeoFirestoreTypes.compat.QueryDocumentSnapshot> =
     new Map();
 
   /**
@@ -53,12 +53,12 @@ export class GeoQueryGet {
    * @param _queryCriteria The query criteria of geo based queries, includes field such as center, radius, and limit.
    */
   constructor(
-    snapshots: GeoFirestoreTypes.web.QuerySnapshot[],
+    snapshots: GeoFirestoreTypes.compat.QuerySnapshot[],
     private _queryCriteria: GeoFirestoreTypes.QueryCriteria
   ) {
     validateQueryCriteria(_queryCriteria);
 
-    snapshots.forEach((snapshot: GeoFirestoreTypes.web.QuerySnapshot) => {
+    snapshots.forEach((snapshot: GeoFirestoreTypes.compat.QuerySnapshot) => {
       snapshot.docs.forEach(doc => {
         const distance = calculateDistance(
           this._queryCriteria.center,
@@ -107,7 +107,7 @@ export class GeoQueryGet {
           docs.map((doc, index) => {
             return {doc, newIndex: index, oldIndex: -1, type: 'added'};
           }),
-      } as GeoFirestoreTypes.web.QuerySnapshot,
+      } as GeoFirestoreTypes.compat.QuerySnapshot,
       this._queryCriteria.center
     );
   }

@@ -18,11 +18,11 @@ export class GeoQuerySnapshot {
    */
   constructor(
     private _querySnapshot:
-      | GeoFirestoreTypes.web.QuerySnapshot
-      | GeoFirestoreTypes.cloud.QuerySnapshot,
+      | GeoFirestoreTypes.compat.QuerySnapshot
+      | GeoFirestoreTypes.admin.QuerySnapshot,
     private _center?:
-      | GeoFirestoreTypes.cloud.GeoPoint
-      | GeoFirestoreTypes.web.GeoPoint
+      | GeoFirestoreTypes.admin.GeoPoint
+      | GeoFirestoreTypes.compat.GeoPoint
   ) {
     if (_center) {
       // Validate the _center coordinates
@@ -30,16 +30,16 @@ export class GeoQuerySnapshot {
     }
 
     this._docs = (
-      _querySnapshot as GeoFirestoreTypes.cloud.QuerySnapshot
-    ).docs.map((snapshot: GeoFirestoreTypes.cloud.QueryDocumentSnapshot) =>
+      _querySnapshot as GeoFirestoreTypes.admin.QuerySnapshot
+    ).docs.map((snapshot: GeoFirestoreTypes.admin.QueryDocumentSnapshot) =>
       generateGeoQueryDocumentSnapshot(snapshot, _center)
     );
   }
 
   /** The native `QuerySnapshot` instance. */
   get native():
-    | GeoFirestoreTypes.cloud.QuerySnapshot
-    | GeoFirestoreTypes.web.QuerySnapshot {
+    | GeoFirestoreTypes.admin.QuerySnapshot
+    | GeoFirestoreTypes.compat.QuerySnapshot {
     return this._querySnapshot;
   }
 
@@ -68,10 +68,10 @@ export class GeoQuerySnapshot {
   docChanges(): GeoFirestoreTypes.DocumentChange[] {
     const docChanges = Array.isArray(this._querySnapshot.docChanges)
       ? (this._querySnapshot
-          .docChanges as any as GeoFirestoreTypes.web.DocumentChange[])
+          .docChanges as any as GeoFirestoreTypes.compat.DocumentChange[])
       : this._querySnapshot.docChanges();
-    return (docChanges as GeoFirestoreTypes.web.DocumentChange[]).map(
-      (change: GeoFirestoreTypes.web.DocumentChange) => {
+    return (docChanges as GeoFirestoreTypes.compat.DocumentChange[]).map(
+      (change: GeoFirestoreTypes.compat.DocumentChange) => {
         return {
           doc: generateGeoQueryDocumentSnapshot(change.doc, this._center),
           newIndex: change.newIndex,

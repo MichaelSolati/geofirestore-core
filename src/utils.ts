@@ -42,7 +42,9 @@ export const METERS_PER_DEGREE_LATITUDE = 110574;
  * @return The number of bits necessary for the geohash.
  */
 export function boundingBoxBits(
-  coordinate: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint,
+  coordinate:
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint,
   size: number
 ): number {
   const latDeltaDegrees = size / METERS_PER_DEGREE_LATITUDE;
@@ -70,9 +72,9 @@ export function boundingBoxBits(
  * @return The eight bounding box points.
  */
 export function boundingBoxCoordinates(
-  center: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint,
+  center: GeoFirestoreTypes.admin.GeoPoint | GeoFirestoreTypes.compat.GeoPoint,
   radius: number
-): GeoFirestoreTypes.cloud.GeoPoint[] | GeoFirestoreTypes.web.GeoPoint[] {
+): GeoFirestoreTypes.admin.GeoPoint[] | GeoFirestoreTypes.compat.GeoPoint[] {
   const latDegrees = radius / METERS_PER_DEGREE_LATITUDE;
   const latitudeNorth = Math.min(90, center.latitude + latDegrees);
   const latitudeSouth = Math.max(-90, center.latitude - latDegrees);
@@ -100,8 +102,12 @@ export function boundingBoxCoordinates(
  * @return The distance, in kilometers, between the inputted locations.
  */
 export function calculateDistance(
-  location1: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint,
-  location2: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint
+  location1:
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint,
+  location2:
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint
 ): number {
   validateLocation(location1);
   validateLocation(location2);
@@ -121,7 +127,7 @@ export function calculateDistance(
  */
 export function decodeGeoQueryDocumentSnapshotData(
   data: GeoFirestoreTypes.GeoDocumentData,
-  center?: GeoFirestoreTypes.web.GeoPoint | GeoFirestoreTypes.cloud.GeoPoint
+  center?: GeoFirestoreTypes.compat.GeoPoint | GeoFirestoreTypes.admin.GeoPoint
 ): {data: () => GeoFirestoreTypes.GeoDocumentData; distance: number} {
   if (validateGeoDocument(data, true)) {
     const distance = center ? calculateDistance(data.g.geopoint, center) : null;
@@ -156,7 +162,7 @@ export function findGeoPoint(
   document: GeoFirestoreTypes.DocumentData,
   customKey?: string,
   flag = false
-): GeoFirestoreTypes.web.GeoPoint | GeoFirestoreTypes.cloud.GeoPoint {
+): GeoFirestoreTypes.compat.GeoPoint | GeoFirestoreTypes.admin.GeoPoint {
   customKey = customKey || CUSTOM_KEY;
   let error: string;
   let geopoint;
@@ -200,9 +206,9 @@ export function findGeoPoint(
  */
 export function generateGeoQueryDocumentSnapshot(
   snapshot:
-    | GeoFirestoreTypes.web.QueryDocumentSnapshot
-    | GeoFirestoreTypes.cloud.QueryDocumentSnapshot,
-  center?: GeoFirestoreTypes.web.GeoPoint | GeoFirestoreTypes.cloud.GeoPoint
+    | GeoFirestoreTypes.compat.QueryDocumentSnapshot
+    | GeoFirestoreTypes.admin.QueryDocumentSnapshot,
+  center?: GeoFirestoreTypes.compat.GeoPoint | GeoFirestoreTypes.admin.GeoPoint
 ): GeoFirestoreTypes.QueryDocumentSnapshot {
   const decoded = decodeGeoQueryDocumentSnapshotData(
     snapshot.data() as GeoFirestoreTypes.GeoDocumentData,
@@ -222,9 +228,9 @@ export function generateGeoQueryDocumentSnapshot(
  * @return Array of Queries to search against.
  */
 export function generateQuery(
-  query: GeoFirestoreTypes.cloud.Query | GeoFirestoreTypes.web.Query,
+  query: GeoFirestoreTypes.admin.Query | GeoFirestoreTypes.compat.Query,
   queryCriteria: GeoFirestoreTypes.QueryCriteria
-): GeoFirestoreTypes.web.Query[] {
+): GeoFirestoreTypes.compat.Query[] {
   // Get the list of geohashes to query
   let geohashesToQuery: string[] = geohashQueries(
     queryCriteria.center,
@@ -242,7 +248,7 @@ export function generateQuery(
     return query
       .orderBy('g.geohash')
       .startAt(queries[0])
-      .endAt(queries[1]) as GeoFirestoreTypes.web.Query;
+      .endAt(queries[1]) as GeoFirestoreTypes.compat.Query;
   });
 }
 
@@ -255,15 +261,18 @@ export function generateQuery(
  * @return An array of geohashes containing a GeoPoint.
  */
 export function geohashQueries(
-  center: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint,
+  center: GeoFirestoreTypes.admin.GeoPoint | GeoFirestoreTypes.compat.GeoPoint,
   radius: number
 ): string[][] {
   validateLocation(center);
   const queryBits = Math.max(1, boundingBoxBits(center, radius));
   const geohashPrecision = Math.ceil(queryBits / BITS_PER_CHAR);
   const coordinates:
-    | GeoFirestoreTypes.cloud.GeoPoint
-    | GeoFirestoreTypes.web.GeoPoint[] = boundingBoxCoordinates(center, radius);
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint[] = boundingBoxCoordinates(
+    center,
+    radius
+  );
   const queries = coordinates.map(coordinate => {
     return geohashQuery(
       hash(
@@ -413,12 +422,12 @@ export function queryToString(query: string[]): string {
 export function toGeoPoint(
   latitude: number,
   longitude: number
-): GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint {
+): GeoFirestoreTypes.admin.GeoPoint | GeoFirestoreTypes.compat.GeoPoint {
   const fakeGeoPoint:
-    | GeoFirestoreTypes.cloud.GeoPoint
-    | GeoFirestoreTypes.web.GeoPoint = {latitude, longitude} as
-    | GeoFirestoreTypes.cloud.GeoPoint
-    | GeoFirestoreTypes.web.GeoPoint;
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint = {latitude, longitude} as
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint;
   validateLocation(fakeGeoPoint);
   return fakeGeoPoint;
 }
