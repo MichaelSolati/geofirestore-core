@@ -33,9 +33,14 @@ export function encodeDocumentAdd(
  * @return The document encoded as GeoDocument object.
  */
 export function encodeDocumentSet(
-  documentData: GeoFirestoreTypes.DocumentData,
+  documentData:
+    | GeoFirestoreTypes.DocumentData
+    | GeoFirestoreTypes.modular.WithFieldValue<any>,
   options?: GeoFirestoreTypes.SetOptions
-): GeoFirestoreTypes.GeoDocumentData | GeoFirestoreTypes.DocumentData {
+):
+  | GeoFirestoreTypes.GeoDocumentData
+  | GeoFirestoreTypes.DocumentData
+  | GeoFirestoreTypes.modular.WithFieldValue<any> {
   if (Object.prototype.toString.call(documentData) !== '[object Object]') {
     throw new Error('document must be an object');
   }
