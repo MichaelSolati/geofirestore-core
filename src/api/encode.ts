@@ -11,9 +11,13 @@ import {findGeoPoint} from '../utils';
  * @return The document encoded as GeoDocument object.
  */
 export function encodeDocumentAdd(
-  documentData: GeoFirestoreTypes.DocumentData,
+  documentData:
+    | GeoFirestoreTypes.DocumentData
+    | GeoFirestoreTypes.modular.WithFieldValue<any>,
   customKey?: string
-): GeoFirestoreTypes.GeoDocumentData {
+):
+  | GeoFirestoreTypes.GeoDocumentData
+  | GeoFirestoreTypes.modular.WithFieldValue<any> {
   if (Object.prototype.toString.call(documentData) !== '[object Object]') {
     throw new Error('document must be an object');
   }
@@ -29,9 +33,14 @@ export function encodeDocumentAdd(
  * @return The document encoded as GeoDocument object.
  */
 export function encodeDocumentSet(
-  documentData: GeoFirestoreTypes.DocumentData,
+  documentData:
+    | GeoFirestoreTypes.DocumentData
+    | GeoFirestoreTypes.modular.WithFieldValue<any>,
   options?: GeoFirestoreTypes.SetOptions
-): GeoFirestoreTypes.GeoDocumentData | GeoFirestoreTypes.DocumentData {
+):
+  | GeoFirestoreTypes.GeoDocumentData
+  | GeoFirestoreTypes.DocumentData
+  | GeoFirestoreTypes.modular.WithFieldValue<any> {
   if (Object.prototype.toString.call(documentData) !== '[object Object]') {
     throw new Error('document must be an object');
   }
@@ -52,9 +61,13 @@ export function encodeDocumentSet(
  * @return The document encoded as GeoDocument object.
  */
 export function encodeDocumentUpdate(
-  documentData: GeoFirestoreTypes.UpdateData,
+  documentData:
+    | GeoFirestoreTypes.UpdateData
+    | GeoFirestoreTypes.modular.WithFieldValue<any>,
   customKey?: string
-): GeoFirestoreTypes.UpdateData {
+):
+  | GeoFirestoreTypes.UpdateData
+  | GeoFirestoreTypes.modular.WithFieldValue<any> {
   if (Object.prototype.toString.call(documentData) !== '[object Object]') {
     throw new Error('document must be an object');
   }
@@ -70,7 +83,9 @@ export function encodeDocumentUpdate(
  * @return The document encoded as GeoDocument object.
  */
 export function encodeGeoDocument(
-  geopoint: GeoFirestoreTypes.cloud.GeoPoint | GeoFirestoreTypes.web.GeoPoint,
+  geopoint:
+    | GeoFirestoreTypes.admin.GeoPoint
+    | GeoFirestoreTypes.compat.GeoPoint,
   documentData: GeoFirestoreTypes.DocumentData
 ): GeoFirestoreTypes.GeoDocumentData {
   validateLocation(geopoint);

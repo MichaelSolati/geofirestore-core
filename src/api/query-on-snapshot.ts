@@ -4,7 +4,7 @@ import {GeoFirestoreTypes} from '../definitions';
 import {calculateDistance, generateQuery} from '../utils';
 
 interface DocMap {
-  change: GeoFirestoreTypes.web.DocumentChange;
+  change: GeoFirestoreTypes.compat.DocumentChange;
   distance: number;
   emitted: boolean;
 }
@@ -20,7 +20,7 @@ interface DocMap {
  * @param queryCriteria The query criteria of geo based queries, includes field such as center, radius, and limit.
  */
 export function geoQueryOnSnapshot(
-  query: GeoFirestoreTypes.cloud.Query | GeoFirestoreTypes.web.Query,
+  query: GeoFirestoreTypes.admin.Query | GeoFirestoreTypes.compat.Query,
   queryCriteria: GeoFirestoreTypes.QueryCriteria
 ): (
   onNext: (snapshot: GeoQuerySnapshot) => void,
@@ -39,7 +39,7 @@ export function geoQueryOnSnapshot(
       ).unsubscribe();
     } else {
       query = queryCriteria.limit ? query.limit(queryCriteria.limit) : query;
-      return (query as GeoFirestoreTypes.web.Query).onSnapshot(
+      return (query as GeoFirestoreTypes.compat.Query).onSnapshot(
         snapshot => onNext(new GeoQuerySnapshot(snapshot)),
         onError
       );
@@ -68,14 +68,14 @@ export class GeoQueryOnSnapshot {
    * @param _onError A callback to be called if the listen fails or is cancelled. No further callbacks will occur.
    */
   constructor(
-    private _queries: GeoFirestoreTypes.web.Query[],
+    private _queries: GeoFirestoreTypes.compat.Query[],
     private _queryCriteria: GeoFirestoreTypes.QueryCriteria,
     private _onNext: (snapshot: GeoQuerySnapshot) => void,
     private _onError: (error: Error) => void = () => {}
   ) {
     validateQueryCriteria(_queryCriteria);
     this._queriesResolved = new Array(_queries.length).fill(0);
-    _queries.forEach((value: GeoFirestoreTypes.web.Query, index) => {
+    _queries.forEach((value: GeoFirestoreTypes.compat.Query, index) => {
       const subscription = value.onSnapshot(
         snapshot => this._processSnapshot(snapshot, index),
         error => (this._error = error)
@@ -131,7 +131,7 @@ export class GeoQueryOnSnapshot {
     let deductIndexBy = 0;
     const docChanges = Array.from(this._docs.values()).map(
       (value: DocMap, index: number) => {
-        const result: GeoFirestoreTypes.web.DocumentChange = {
+        const result: GeoFirestoreTypes.compat.DocumentChange = {
           type: value.change.type,
           doc: value.change.doc,
           oldIndex: value.emitted ? value.change.newIndex : -1,
@@ -173,7 +173,7 @@ export class GeoQueryOnSnapshot {
               }
               return reduced;
             }, []),
-        } as GeoFirestoreTypes.web.QuerySnapshot,
+        } as GeoFirestoreTypes.compat.QuerySnapshot,
         this._queryCriteria.center
       )
     );
@@ -203,11 +203,11 @@ export class GeoQueryOnSnapshot {
    * @param index Index of query who's snapshot has been triggered.
    */
   private _processSnapshot(
-    snapshot: GeoFirestoreTypes.web.QuerySnapshot,
+    snapshot: GeoFirestoreTypes.compat.QuerySnapshot,
     index: number
   ): void {
     const docChanges = Array.isArray(snapshot.docChanges)
-      ? (snapshot.docChanges as any as GeoFirestoreTypes.web.DocumentChange[])
+      ? (snapshot.docChanges as any as GeoFirestoreTypes.compat.DocumentChange[])
       : snapshot.docChanges();
     if (!this._firstRoundResolved) this._queriesResolved[index] = 1;
     if (docChanges.length) {

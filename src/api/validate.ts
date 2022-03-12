@@ -62,7 +62,9 @@ export function validateLimit(limit: number, flag = false): boolean {
  * @param flag Tells function to send up boolean if not valid instead of throwing an error.
  */
 export function validateLocation(
-  location: GeoFirestoreTypes.web.GeoPoint | GeoFirestoreTypes.cloud.GeoPoint,
+  location:
+    | GeoFirestoreTypes.compat.GeoPoint
+    | GeoFirestoreTypes.admin.GeoPoint,
   flag = false
 ): boolean {
   let error: string;

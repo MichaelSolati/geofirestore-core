@@ -54,6 +54,7 @@
     "geokit": "^1.1.0"
   },
   "optionalDependencies": {
+    "@firebase/firestore": ">= 3.0.0 < 4.0.0",
     "@google-cloud/firestore": ">= 5.0.0 < 6.0.0",
     "firebase": ">= 9.0.0 < 10.0.0"
   },
